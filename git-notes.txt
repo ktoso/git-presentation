@@ -1,0 +1,126 @@
+----------------------- Git @ JavaCamp #5 -----------
+dwa slajdy na start----------------------------------
+
+disclaimer-------------------------------------------
+ * slajdy są "INNE" bo git jest inny
+   * pragmatyczny programista
+   * Who's POIGNANT guide to ruby
+   * !!! zabawna forma łatwiej się zapamiętuje !!!
+
+svn-------------------------------------------------
+* jedno repo "commituj do mnie sługo!!"
+* konflikty bolą - tree conflict 
+                            ^-- anegdotka
+* developerzy nie commitują między sobą
+
+GIT--------------------------------------------------
+* rozproszony (może być "nie")
+* lokalny
+* szybki
+* branch jest banalne
+* merge jest BANALNE
+
+Jak to możliwe?
+
+Patrzenie na zmiany ---------------------------------
+SVN - Liniowo, "changeset"
+Git - "snapshot systemu plików" (virtualbox)
+
+
+Zobaczmy przykładowe repo----------------------------
+git init .
+  #albo git clone [sciezka]
+  #moze to byc SSH, GIT, system plikow lub HTTP
+ls 
+ls -lah
+tree .git
+cat .git/config
+
+  #git config --global user.name Konrad Malawski
+  #git config --global user.email ktoso@project13.pl
+
+
+Przygotujmy nasze przykładowe repozytorium-----------
+-- ZROBIĆ EXAMPLE GWT APP --
+
+git add .
+tree
+git commit
+export EDITOR=vim
+  #albo git config
+
+-----------------------------------------------------
+git clone jeden dwa
+vim ./git/config 
+  # zauwazmy ze pojawil sie origin
+  # "miejsce pochodzenia", cos jakby "glowne repo"
+
+zrobić kilka branchów--------------------------------
+
+git branch feature-52
+git branch bugfux
+
+touch PRZESZKODA_W_MASTER_ZANIM_BRANCH
+
+git branch
+
+git checkout bugfix
+   commit commit commit
+git branch feature-52
+   commit commit commit
+
+git checkout master
+
+fast forward merge-----------------------------------
+git merge bugfix
+
+git branch
+  # dlaczego nadal mamy ten branch? 
+  # mozna go dalej rozwijac. ale chce go usunac teraz
+git branch -D bugfix
+
+a jesli chce normalny merge?--------------------------
+git branch testujemy
+mkdir zmiany-ff
+touch zmiany-ff/pierwszaZmiana.txt
+git add .
+git commit -am "zmiana"
+git add .
+touch zmiany-ff/drugaZmiana.txt
+git commit -am "zmiana"
+
+STASH i KONFLIKT-------------------------------------
+zmień coś w jeden
+zmień to samo w dwa - Chcę konflikt
+
+zrób brudno w dwa
+w dwa:
+git pull jeden master
+# nie uda sie bo mam "brudno"
+# robimy zatem 
+git stash
+git stash list
+
+MERGETOOL to the rescue------------------------------
+
+git pull
+# mozemy oczywiscie rozwiazac recznie a potem git add 
+# ale to glupie ;-)
+git mergetool
+
+TAG--------------------------------------------------
+oTAGowac wydanie wydanie
+
+git tag dziekuje-za-uwage
+
+push na dowidzenia :-)-------------------------------
+git remote add origin git@github.com:ktoso/sample.git
+git push origin master
+
+-----------------------------------------------------
+GITK + git log --graph
+
+-----------------------------------------------------
+----------------  END OF PRESENTATION  --------------
+----------------      THANK YOU!       --------------
+-----------------------------------------------------
